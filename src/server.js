@@ -7,6 +7,7 @@ const app = express();
 
 const PORT = Number(process.env.PORT || 3000);
 const DB_SSL = String(process.env.DB_SSL ?? "true").toLowerCase() === "true";
+const DB_SSL_REJECT_UNAUTHORIZED = String(process.env.DB_SSL_REJECT_UNAUTHORIZED ?? "true").toLowerCase() === "true";
 const ALLOW_HTTP_UPSTREAM =
   String(process.env.ALLOW_HTTP_UPSTREAM ?? "false").toLowerCase() === "true";
 const UPSTREAM_TIMEOUT_MS = Number(process.env.UPSTREAM_TIMEOUT_MS || 120000);
@@ -25,7 +26,7 @@ const pool = new Pool({
   database: process.env.DB_NAME || "postgres",
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: DB_SSL ? { rejectUnauthorized: true } : false,
+  ssl: DB_SSL ? { rejectUnauthorized: DB_SSL_REJECT_UNAUTHORIZED } : false,
   connectionTimeoutMillis: 10000,
   idleTimeoutMillis: 30000,
   max: 5

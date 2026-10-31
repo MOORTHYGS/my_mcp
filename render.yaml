@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: my-mcp
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_NAME
+        value: postgres
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: UPSTREAM_TIMEOUT_MS
+        value: "120000"
+      - key: MAX_BODY_BYTES
+        value: "10485760"
+      - key: ALLOW_HTTP_UPSTREAM
+        value: "false"

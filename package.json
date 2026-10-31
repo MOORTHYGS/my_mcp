@@ -1,0 +1,16 @@
+{
+  "name": "my_mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure HTTP gateway that forwards MCP requests to the upstream endpoint stored in Supabase.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
